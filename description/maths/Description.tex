@@ -1,0 +1,196 @@
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[english]{babel}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{environ}
+\usepackage[utf8x]{inputenc}
+\usepackage{mathrsfs}
+\usepackage{libertine}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+
+
+\expandafter\def\expandafter\normalsize\expandafter{%
+\normalsize
+\setlength\abovedisplayskip{10pt}
+\setlength\belowdisplayskip{10pt}
+\setlength\abovedisplayshortskip{10pt}
+\setlength\belowdisplayshortskip{13pt}
+}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\fG}{\mathfrak{G}}
+\newcommand{\fh}{\hat{h}}
+\newcommand{\fM}{\mathfrak{M}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fS}{\mathfrak{S}}
+\newcommand{\fw}{\mathfrak{w}}
+
+\newcommand{\rD}{\mathrm{D}}
+\newcommand{\rd}{\mathrm{d}}
+\newcommand{\rF}{\mathrm{F}}
+\newcommand{\rI}{\mathrm{I}}
+\newcommand{\rL}{\mathrm{L}}
+
+\newcommand{\sDM}{\mathscr{DM}}
+\newcommand{\DM}{{decision maker}}
+\newcommand{\intS}{\mathring{\S}}
+
+\newcommand{\argdot}{\,\cdot\,}
+\newcommand{\equi}{\gamma_{\mathrm{eq}}}
+\newcommand{\hEqui}{h_{\mathrm{eq}}}
+\newcommand{\vEqui}{v_{\mathrm{eq}}}
+\newcommand{\pEqui}{p_{\mathrm{eq}}}
+
+\newcommand{\comp}{\mathsf{c}}
+\newcommand{\dom}{\mathrm{dom}\,}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\gph}{\mathrm{gph}\,}
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\Leb}{\mathrm{Leb}}
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\metric}{d}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\Diff}{D}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{notation}{Notation}
+\newtheorem{claim}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\close}{\hspace*{\fill}$\diamond$}
+\newcommand{\closeEqn}{\tag*{$\diamond$}}
+
+
+\title{Approaches}
+\author{Alexander Merkel}
+
+\begin{document}
+\maketitle
+
+\section{The OU-OU model}
+We model the three-dimensional $\log$-returns $R = (R^{1},R^{2},R^{3})$ as
+\begin{equation}
+    \rd R_{t} = \bigl[\mu - \frac{1}{2} \diag\bigl(\Sigma_{t}\Sigma_{t}^{\top}\bigr)\bigr] \rd t 
+    + \Sigma_{t} \rd B_{t},\quad R_{0} = r_{0},
+\end{equation}
+where $\mu\in \R^{3}$ is the drift, $\sigma_{t} \in \R^{3}$ is the volatility, and $B = (B^{1},B^{2},B^{3})$ is a standard Brownian motion in $\R^{3}$. We assume that the volatility is given by
+and most importantly with $X :=\log(\Sigma)$ the log-volatility process, we have
+\begin{align*}
+    \rd Y_{t} &= - \beta Y_{t} \rd t + \Sigma_{Y}\rd W^{1}_{t}, \quad X_{0} = x_{0},\\
+    \rd X_{t} &= \lambda\bigl( Y_{t} - X_{t}\bigr) \rd t + \Sigma_{X}\rd W^{2}_{t},
+    \quad X_{0} = x_{0},
+\end{align*}
+and $X, Y \in \R^{3 \times 3}$ are $3\times 3$-matrix-valued processes, and $W^{1}, W^{2}$
+are independent standard Brownian motions in $\R^{3}$.
+
+The parameters $\beta, \lambda > 0$ are the mean-reversion rates,
+and $\Sigma_{Y}, \Sigma_{X} \in \cS_{++}^{3}$ are the covariance matrices of the OU-OU model.
+The Brownian motions $W^{1}, W^{2}$ are independent standard Brownian motions in $\R^{3}$.
+
+\begin{example}
+    In the case of a single asset, we have $R = (R^{1})$ and $\Sigma = \sigma > 0$.
+    The parameters of the OU-OU model in the reference are e.g.
+    \begin{align*}
+        \Sigma_{X} = 20,\quad
+        \Sigma_{Y} = 0.625,\quad
+        \lambda = 210,\quad
+        \beta = 2.5.
+    \end{align*}
+\end{example}
+
+\subsubsection*{Fitting the model}
+We can obtain the $\log$-volatility process $X$ by using
+\begin{equation}
+    \langle R_{t} \rangle_{t} 
+    = \int_{0}^{t} \Sigma_{s}\Sigma_{s}^{\top} \rd s,
+\end{equation}
+together with the approximation
+\begin{equation}
+    \langle R_{t} \rangle_{t} \approx \sum_{n=0}^{N-1} \bigl(R_{t_{n+1}} - R_{t_{n}}\bigr)\bigl(R_{t_{n+1}} - R_{t_{n}}\bigr)^{\top},
+\end{equation}
+for the covariation of the $\log$-returns $R$.
+Hence we can estimate the $\log$-volatility process $X$ by
+
+
+
+\subsection{As discrete-time model}
+Discretizing the OU-OU model, on an equidistant grid $t_{n} = n\Delta t$ with $n\in \N$ and $\Delta t > 0$, we obtain
+\begin{align}
+    R_{t_{n+1}} &= R_{t_{n}} + \bigl[\mu - \frac{1}{2}\diag\bigl(\Sigma_{t_{n}}\Sigma_{t_{n}}^{\top}\bigr)\bigr] + \Sigma_{t_{n}}Z_{n},\\
+    Y_{t_{n+1}} &= (1-\beta Y_{t_{n}})  + \Sigma_{Y}Z^{1}_{n},\\
+    X_{t_{n+1}} &= X_{t_{n}} + \lambda\bigl(Y_{t_{n}} - X_{t_{n}}\bigr) + \Sigma_{X}Z^{2}_{n},
+\end{align}
+where in the application the parameters correspond to the 1-hourly estimation of the model.
+
+\section{A GARCH model}
+In $GARCH(1,1)$, the volatility process is given by
+\begin{align*}
+    r_{t} &= \mu + \sigma_{t}Z_{t},\\
+    \Sigma_{t}^{2} &= \omega + \alpha r_{t-1} r_{t-1}^{T} + \beta \Sigma_{t-1}\Sigma_{t-1}^{T},
+\end{align*}
+where we test $Z\sim \cN(0,1)$ or $Z\sim t_{1}$.
+
+
+
+\bibliographystyle{plain}
+\bibliography{References}
+
+\end{document}
