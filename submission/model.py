@@ -7,9 +7,9 @@ class GARCHGenerator(nn.Module):
     def __init__(self, coefficients):
         super(GARCHGenerator, self).__init__()
         self.coefficients = coefficients
+        print(coefficients)
 
     def forward(self, batch_size, device):
-        samples = []
         params = self.coefficients
         # params is a tensor of shape 3x4 with asset x (mu, omega, alpha, beta)
         sim_data = simulate_garch_paths(params, 24 * batch_size, device)
@@ -46,6 +46,8 @@ def init_generator(device="cpu"):
     coefficients = load_parameters(device)
     generator = GARCHGenerator(coefficients)
     return generator
+
+generator = init_generator()
 
 # %%
 # if __name__ == "__main__":
